@@ -44,16 +44,16 @@ export default function NewsCard({
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                    <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
                         Author: Wesley Hilliard
                     </span>
-                    <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                    <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
                         Source: AppleInsider
                     </span>
                     <Link
                         title="Read More"
                         href="https://appleinsider.com/articles/24/03/08/apple-tv-movies-struggling-to-prevail-in-theaters-still-considered-profitable"
-                        className="inline-block bg-clr_primary rounded-full px-3 py-1 text-sm font-semibold text-white">
+                        className="inline-block bg-clr_primary rounded-full text-sm font-semibold text-white">
                         Read More
                     </Link>
                 </div>

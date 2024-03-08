@@ -5,7 +5,7 @@ import NewsMosaic from "@/public/images/news-mosaic-no-bg.png";
 export default function Header() {
     return (
         <header>
-            <nav className="bg-slate-200">
+            <nav className="bg-slate-200 shadow-md shadow-slate-300">
                 <ul className="list-none flex p-4 gap-4 max-w-6xl mx-auto items-center text-clr_tertiary">
                     <li>
                         <Link href="/" title="NewsMosaic">

@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ENVIRONMENT VARIABLES
 
-## Getting Started
+Don't forget to add the following environmental variables into your application
 
-First, run the development server:
+## NEWS API
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+-   NEWS_API_BASE_URL=????
+-   NEWS_API_KEY==????
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## NY TIMES API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   NY_TIMES_BASE_URL==????
+-   NY_TIMES_API_KEY==????
+-   NY_TIMES_API_SECRET==????
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# COLORS USED
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   #1a2f3e
+-   #acb3ba
+-   #5f818f
+-   #af857b
+-   #ece2dd
+-   #9b7a75
+-   #5a4f51
+-   #927158

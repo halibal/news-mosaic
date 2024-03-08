@@ -3,10 +3,11 @@ import type { Config } from "tailwindcss";
 const config = {
     darkMode: ["class"],
     content: [
-        "./pages/**/*.{ts,tsx}",
-        "./components/**/*.{ts,tsx}",
-        "./app/**/*.{ts,tsx}",
-        "./src/**/*.{ts,tsx}",
+        "./app/**/*.{js,ts,jsx,tsx}",
+        "./pages/**/*.{js,ts,jsx,tsx}",
+        "./components/**/*.{js,ts,jsx,tsx}",
+        // Or if using `src` directory:
+        "./src/**/*.{js,ts,jsx,tsx}",
     ],
     prefix: "",
     theme: {
@@ -52,6 +53,14 @@ const config = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
+                clr_primary: "#1a2f3e",
+                clr_secondary: "#acb3ba",
+                clr_tertiary: "#5f818f",
+                clr_accent: "#af857b",
+                clr_background: "#ece2dd",
+                clr_foreground: "#9b7a75",
+                clr_muted: "#5a4f51",
+                clr_destructive: "#927158",
             },
             borderRadius: {
                 lg: "var(--radius)",

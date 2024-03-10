@@ -1,13 +1,15 @@
+type stringOrUndefined = string | undefined;
+
 export type Article = {
     source: {
-        id: string;
-        name: string;
+        id: stringOrUndefined;
+        name: stringOrUndefined;
     };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string;
-    content: string;
+    author: stringOrUndefined;
+    title: stringOrUndefined;
+    description: stringOrUndefined;
+    url: stringOrUndefined;
+    urlToImage: stringOrUndefined;
+    publishedAt: stringOrUndefined;
+    content: stringOrUndefined;
 };

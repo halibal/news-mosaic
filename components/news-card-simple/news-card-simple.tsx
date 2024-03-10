@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import NoImageFound from "@/public/images/no-image-found.jpeg";
 
 interface NewsCardSimpleProps {
-    description?: string;
-    imageUrl: string;
+    description?: string | undefined;
+    imageUrl?: string | undefined;
     pathname: string;
-    title: string;
+    title: string | undefined;
 }
 
 export default function NewsCardSimple({
@@ -17,16 +18,16 @@ export default function NewsCardSimple({
     return (
         <Link
             href={pathname}
-            title={title}
-            className="w-full relative p-4 group rounded-xl overflow-hidden flex min-h-52 flex-col gap-4 shadow-lg shadow-slate-500">
+            title={title || "No title"}
+            className="group relative flex min-h-52 w-full flex-col gap-4 overflow-hidden rounded-xl p-4 shadow-lg shadow-slate-500">
             <Image
-                className="w-full object-cover h-auto group-hover:scale-125 group-hover:opacity-60 transition-all duration-500 opacity-40 -z-20"
-                src={imageUrl}
-                alt={title}
+                className="-z-20 h-auto w-full object-cover opacity-40 transition-all duration-500 group-hover:scale-125 group-hover:opacity-60"
+                src={imageUrl ?? NoImageFound}
+                alt={title || "No image found"}
                 fill
             />
-            <div className="absolute inset-0 bg-slate-400 opacity-30 group-hover:bg-transparent transition-all duration-500 -z-10"></div>
-            <h2 className="lg:text-lg font-bold mt-auto">{title}</h2>
+            <div className="absolute inset-0 -z-10 bg-slate-400 opacity-30 transition-all duration-500 group-hover:bg-transparent"></div>
+            <h2 className="mt-auto font-bold lg:text-lg">{title}</h2>
             {description && <p className="max-lg:text-xs">{description}</p>}
         </Link>
     );

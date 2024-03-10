@@ -3,10 +3,10 @@
 import { NEWS_API_BASE_URL } from "@/actions/base-url";
 import { errorObject } from "@/lib/functions/error-object";
 
-export const getEverything = async (page = 1, pageSize = 5, query?: string) => {
+export const getEverythingFromNewsApi = async (page = 1, pageSize = 5, query?: string) => {
     try {
         const response = await fetch(
-            `${NEWS_API_BASE_URL}?q=${query}&pageSize=${pageSize}&page=${page}`,
+            `${NEWS_API_BASE_URL}/everything?q=${query}&pageSize=${pageSize}&page=${page}`,
             {
                 method: "GET",
                 headers: {

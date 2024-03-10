@@ -1,14 +1,11 @@
-import { getEverything } from "@/actions/news-api/get-everything";
+import { getEverythingFromNewsApi } from "@/actions/news-api/get-everything-from-news-api";
 import { Article } from "@/types/article";
 import NewsCard from "@/components/news-card/news-card";
 import Loader from "@/components/common/loader";
-import { wait } from "@/actions/news-api/wait";
 
 export default async function PopularArticles() {
-    const data = await getEverything();
-    console.log(data?.articles);
-
-    await wait(20000);
+    // const data = await getEverythingFromNewsApi();
+    const data = {};
 
     const isData = data?.articles && data.articles.length > 0;
 
@@ -27,7 +24,7 @@ export default async function PopularArticles() {
                         key={index}
                     />
                 ))}
-                
+
             <Loader />
         </div>
     );

@@ -5,8 +5,8 @@ import NewsMosaic from "@/public/images/news-mosaic-no-bg.png";
 
 export default function Footer() {
     return (
-        <footer className="bg-clr_secondary text-clr_primary min-h-64">
-            <div className="max-w-6xl mx-auto h-full p-4 flex flex-col justify-center gap-4">
+        <footer className="bg-clr_secondary text-clr_primary">
+            <div className="max-w-6xl mx-auto h-full p-4 flex flex-col justify-center gap-4 min-h-64">
                 <div className="flex flex-wrap max-lg:flex-col justify-between max-lg:gap-4">
                     <div className="flex max-lg:flex-col items-center gap-4 max-w-2xl max-lg:max-w-full">
                         <Image src={NewsMosaic} alt="NewsMosaic" width={140} />

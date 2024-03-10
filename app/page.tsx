@@ -1,7 +1,15 @@
+import SectionTitle from "@/components/common/section-title";
 import NewsCardSimple from "@/components/news-card-simple/news-card-simple";
-import Image from "next/image";
+import PopularArticles from "@/components/popular-articles/popular-articles";
+import PopularArticlesSkeleton from "@/components/popular-articles/popular-articles-skeleton";
+import { Suspense } from "react";
 
-export default function Home() {
+export default function Home({searchParams}) {
+    const {size} = searchParams;
+
+// TODO: ilk sayfaya 3 tane latest news koy
+// TODO: Altina personalized news uanina da read more
+
     return (
         <main className="max-w-6xl mx-auto my-10 p-4">
             <h1 className="flex gap-4 mb-10 font-bold text-xl text-clr_primary items-center">
@@ -40,6 +48,12 @@ export default function Home() {
                         still considers two of them profitable."
                     />
                 </div>
+            </div>
+            <div className="">
+                <SectionTitle title="Popular Articles" />
+                <Suspense fallback={<PopularArticlesSkeleton />}>
+                    <PopularArticles size sfasf />
+                </Suspense>
             </div>
         </main>
     );

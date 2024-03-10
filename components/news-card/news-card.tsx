@@ -22,40 +22,37 @@ export default function NewsCard({
     publishedAt,
 }: NewsCardProps) {
     return (
-        <div className="max-w-sm rounded-lg flex flex-col gap-4 overflow-hidden shadow-lg">
-            <Image
-                className="w-full object-cover"
-                width={300}
-                height={200}
-                src="https://photos5.appleinsider.com/gallery/58882-120071-Killers-of-the-Flower-Moon-xl.jpg"
-                alt="Apple TV+ movies struggling to prevail in theaters still considered 'profitable'"
-            />
-            <div className="p-4 flex flex-col gap-4">
+        <div className="w-full rounded-xl h-48 flex overflow-hidden bg-slate-100 shadow-lg shadow-slate-500 max-h-52">
+            {imgUrl && (
+                <Image
+                    className="object-cover min-w-48"
+                    width={300}
+                    height={200}
+                    src={imgUrl}
+                    alt={title}
+                />
+            )}
+            <div className="p-4 flex flex-col w-full gap-4">
                 <div className="flex flex-col gap-4">
-                    <div className="font-bold text-md">
-                        Apple TV+ movies struggling to prevail in theaters still
-                        considered &apos;profitable&apos;
-                    </div>
+                    <div className="font-bold text-md">{title}</div>
                     <p className="text-gray-700 text-xs text-justify">
-                        Apple TV+ appears to be pulling some accounting magic
-                        after its latest $700 million run of films, which
-                        captured only $466 million in revenue, but the company
-                        still considers two of them profitable.
+                        {description}
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                    <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
-                        Author: Wesley Hilliard
+                    <span className="inline-block bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700">
+                        Author: {author}
                     </span>
-                    <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
-                        Source: AppleInsider
+                    <span className="inline-block bg-gray-200 rounded-full px-2 py-1 text-sm font-semibold text-gray-700">
+                        Source: {source}
                     </span>
                     <Link
                         title="Read More"
-                        href="https://appleinsider.com/articles/24/03/08/apple-tv-movies-struggling-to-prevail-in-theaters-still-considered-profitable"
-                        className="inline-block bg-clr_primary rounded-full text-sm font-semibold text-white">
+                        href={url}
+                        className="inline-block bg-clr_primary rounded-full px-2 py-1 text-sm font-semibold text-white">
                         Read More
                     </Link>
+                    
                 </div>
             </div>
         </div>

@@ -5,16 +5,16 @@ import { errorObject } from "@/lib/functions/error-object";
 
 /**
  *
+ * @param country
  * @param page
  * @param pageSize
- * @param country
  *
  */
 
 export const getLatestHeadlines = async (
+    country = "us",
     page = 1,
-    pageSize = 3,
-    country = "tr"
+    pageSize = 3
 ) => {
     return fetch(
         `${NEWS_API_BASE_URL}/top-headlines?country=${country}&pageSize=${pageSize}&page=${page}`,

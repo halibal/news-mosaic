@@ -7,10 +7,7 @@ import { SearchParamsProps } from "@/types/search-params";
 import { Suspense } from "react";
 
 export default function Home({ searchParams }: SearchParamsProps) {
-    // TODO: ilk sayfaya 3 tane latest news koy
-    // TODO: Altina personalized news uanina da read more
-
-    const { country } = searchParams;
+    let { country, category } = searchParams;
 
     return (
         <main className="mx-auto my-10 flex max-w-6xl flex-col gap-8 p-4">

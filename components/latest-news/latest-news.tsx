@@ -4,8 +4,8 @@ import { Article } from "@/types/article";
 import NoDataAvailable from "@/components/common/no-data-available";
 import SectionTitle from "@/components/common/section-title";
 
-export default async function LatestNews({ country = "tr" }) {
-    const data = await getLatestHeadlines(1, 3, country);
+export default async function LatestNews({ country }: { country?: string }) {
+    const data = await getLatestHeadlines(country);
 
     const isData = data?.articles && data.articles.length > 0;
 

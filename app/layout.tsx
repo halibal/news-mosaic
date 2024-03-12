@@ -78,7 +78,9 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${open_sans.className} flex flex-col`}>
                 <Header />
-                <div className="flex-1">{children}</div>
+                <div className="flex flex-1 flex-col items-center">
+                    {children}
+                </div>
                 <Footer />
             </body>
         </html>

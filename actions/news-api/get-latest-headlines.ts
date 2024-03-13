@@ -16,8 +16,10 @@ export const getLatestHeadlines = async (
     page = 1,
     pageSize = 3
 ) => {
+    const isCountry = country ? (country !== "all" ? country : "us") : "us";
+
     return fetch(
-        `${NEWS_API_BASE_URL}/top-headlines?country=${country}&pageSize=${pageSize}&page=${page}`,
+        `${NEWS_API_BASE_URL}/top-headlines?country=${isCountry}&pageSize=${pageSize}&page=${page}`,
         {
             method: "GET",
             headers: {

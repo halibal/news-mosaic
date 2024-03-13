@@ -3,18 +3,22 @@ import { getLatestHeadlines } from "@/actions/news-api/get-latest-headlines";
 import { Article } from "@/types/article";
 import NoDataAvailable from "@/components/common/no-data-available";
 import SectionTitle from "@/components/common/section-title";
+import { cookies } from "next/headers";
 
-export default async function LatestNews({ country }: { country?: string }) {
-    const data = await getLatestHeadlines(country);
+export default async function LatestNews() {
+    const countryCookie = cookies().get("country")?.value;
+    const data = await getLatestHeadlines(countryCookie);
 
-    const isData = data?.articles && data.articles.length > 0;
+    const isData = data?.articles && data?.articles?.length > 0;
 
-    const noDataAvailable = data.articles.length === 0;
 
     return (
         <div className="flex flex-col gap-4">
             <SectionTitle title="Latest News" />
-            {noDataAvailable ? (
+            <p className="rounded-xl bg-rose-100 p-4 text-justify text-sm text-rose-500">
+                WARNING: {data?.status === "error" && data?.message}
+            </p>
+            {!isData ? (
                 <NoDataAvailable />
             ) : (
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2">

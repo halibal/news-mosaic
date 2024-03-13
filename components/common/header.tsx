@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NewsMosaic from "@/public/images/news-mosaic-no-bg.png";
+import { ToggleCustomizeButton } from "@/components/common/toggle-customize-button";
 
 export default function Header() {
     return (
@@ -18,7 +19,7 @@ export default function Header() {
                             />
                         </Link>
                     </li>
-                    <div className="ms-auto flex gap-4">
+                    <div className="ms-auto flex items-center gap-4">
                         <li>
                             <Link
                                 href="/"
@@ -34,6 +35,9 @@ export default function Header() {
                                 title="Search The News">
                                 News
                             </Link>
+                        </li>
+                        <li>
+                            <ToggleCustomizeButton />
                         </li>
                     </div>
                 </ul>

@@ -28,26 +28,28 @@ export default async function NewsList({ searchParams }: SearchParamsProps) {
 
     const isData = data?.articles && data.articles.length > 0;
 
-    const noDataAvailable = data?.articles?.length === 0;
-
     return (
         <div className="flex flex-1 flex-col gap-4">
-            {noDataAvailable ? (
-                <NoDataAvailable />
-            ) : (
-                <div className="flex flex-col gap-4">
-                    {isData &&
-                        data.articles.map((article: Article) => (
-                            <NewsCardSimple
-                                key={article.title}
-                                pathname="/news/1"
-                                imageUrl={article.urlToImage}
-                                title={article.title}
-                                description={article.description}
-                            />
-                        ))}
-                </div>
+            {isData || (
+                <p className="rounded-xl bg-rose-100 p-4 text-justify text-sm text-rose-500">
+                    WARNING: {data?.message}
+                </p>
             )}
+            <div className="flex flex-col gap-4">
+                {isData ? (
+                    data.articles.map((article: Article) => (
+                        <NewsCardSimple
+                            key={article.title}
+                            pathname="/news/1"
+                            imageUrl={article.urlToImage}
+                            title={article.title}
+                            description={article.description}
+                        />
+                    ))
+                ) : (
+                    <NoDataAvailable />
+                )}
+            </div>
 
             <div className="mt-auto">
                 <hr className="my-2 border-sky-200" />

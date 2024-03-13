@@ -7,7 +7,7 @@ interface NewsData {
 }
 
 export function filterRemovedArticles(data?: NewsData): NewsData {
-    if (!data) {
+    if (!data || !data?.articles) {
         return {
             status: "ok",
             totalResults: 0,

@@ -2,6 +2,7 @@
 
 import { NEWS_API_BASE_URL } from "@/actions/base-url";
 import { errorObject } from "@/lib/functions/error-object";
+import { cookies } from "next/headers";
 
 /**
  *
@@ -18,12 +19,25 @@ export const getTopHeadlines = async (
     country = "us",
     sources?: string,
     page = 1,
-    pageSize = 5
+    pageSize = 4
 ) => {
     // can't send sources if category or country is present and vice versa due to endpoint restrictions
     const isSources = category || country ? "" : `&sources=${sources}`;
-    const isCategory = category ? `&category=${category}` : "";
-    const isCountry = country ? `&country=${country}` : "";
+    let isCategory = category
+        ? category !== "all"
+            ? `&category=${category}`
+            : ""
+        : "";
+    let isCountry = country
+        ? country !== "all"
+            ? `&country=${country}`
+            : `&country=us`
+        : "";
+
+    if (sources) {
+        isCategory = "";
+        isCountry = "";
+    }
 
     try {
         const response = await fetch(

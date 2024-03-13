@@ -4,10 +4,11 @@ import { ModalContext } from "@/providers/modal-provider";
 import { useContext, useEffect, useRef, useState } from "react";
 import Select, { MultiValue } from "react-select";
 import { countryOptions } from "@/lib/options/country-options";
-import { set } from "date-fns";
 import { categoryOptions } from "@/lib/options/category-options";
 import { getSources } from "@/actions/news-api/get-sources";
 import { transformArticlesDataToOptions } from "@/lib/functions/transform-articles-data-to-options";
+import { setCookies } from "@/actions/set-cookies";
+import { IoCheckmarkOutline } from "react-icons/io5";
 
 // This component is a modal that will be used to customize the feeds using the country, category, and sources.
 // Both the country and category will be dropdowns, and the sources will be a multi-select dropdown.
@@ -17,6 +18,7 @@ import { transformArticlesDataToOptions } from "@/lib/functions/transform-articl
 export default function CustomizeFeedsModal() {
     const { isModalOpen, setIsModalOpen } = useContext(ModalContext);
     const [data, setData] = useState<any>(null);
+    const [message, setMessage] = useState<string | null>(null);
     const [selectedCountryOption, setSelectedCountryOption] = useState<{
         value: string;
         label: string;
@@ -35,7 +37,17 @@ export default function CustomizeFeedsModal() {
 
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const handleFilterFeeds = () => {};
+    const handleFilterFeeds = () => {
+        const isSourcesSelected = !!selectedSourceOptions?.length;
+        setCookies({
+            category: selectedCategoryOption?.value,
+            country: selectedCountryOption?.value,
+            sources: isSourcesSelected
+                ? selectedSourceOptions?.map((option) => option.value).join(",")
+                : undefined,
+        });
+        setMessage("Feeds filtered successfully");
+    };
 
     useEffect(() => {
         getSources().then((data) => {
@@ -61,15 +73,11 @@ export default function CustomizeFeedsModal() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isModalOpen]);
 
-    console.log(data);
 
     if (!isModalOpen) return null;
 
-    const isCategoryOrCountrySelected = selectedCountryOption || selectedCategoryOption;
-    console.log(isCategoryOrCountrySelected);
-
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-35">
+        <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-35 p-4">
             <div
                 ref={containerRef}
                 className="flex w-full max-w-96 flex-col gap-4 rounded-lg bg-slate-500 p-4 text-white">
@@ -113,6 +121,11 @@ export default function CustomizeFeedsModal() {
                     onClick={handleFilterFeeds}>
                     Filter Feeds
                 </button>
+                {message && (
+                    <p className="flex items-center justify-center gap-1 text-xs text-emerald-300">
+                        <IoCheckmarkOutline size={16} /> {message}
+                    </p>
+                )}
             </div>
         </div>
     );

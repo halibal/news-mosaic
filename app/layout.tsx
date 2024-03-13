@@ -3,6 +3,8 @@ import { Open_Sans } from "next/font/google";
 import Header from "@/components/common/header";
 import "./globals.css";
 import Footer from "@/components/common/footer";
+import { ModalProvider } from "@/providers/modal-provider";
+import CustomizeFeedsModal from "@/components/common/customize-feeds-modal";
 
 const open_sans = Open_Sans({
     display: "swap",
@@ -77,11 +79,14 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${open_sans.className} flex flex-col`}>
-                <Header />
-                <div className="flex flex-1 flex-col items-center">
-                    {children}
-                </div>
-                <Footer />
+                <ModalProvider>
+                    <Header />
+                    <div className="flex flex-1 flex-col items-center">
+                        {children}
+                    </div>
+                    <Footer />
+                    <CustomizeFeedsModal />
+                </ModalProvider>
             </body>
         </html>
     );

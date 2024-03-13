@@ -26,19 +26,9 @@ export default async function NewsList({ searchParams }: SearchParamsProps) {
         to,
     });
 
-    console.log(data);
-
     const isData = data?.articles && data.articles.length > 0;
 
     const noDataAvailable = data?.articles?.length === 0;
-
-    console.log(data);
-
-    const totalPages = data?.totalResults
-        ? Math.ceil(data.totalResults / +pageSize)
-        : 0;
-
-    console.log(calculateTotalPages(data?.totalResults || 0, +pageSize));
 
     return (
         <div className="flex flex-1 flex-col gap-4">

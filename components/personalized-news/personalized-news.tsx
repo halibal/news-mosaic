@@ -17,7 +17,6 @@ export default async function PersonalizedNews({
     sources,
 }: PersonalizedNewsProps) {
     const data = await getTopHeadlines(category, country, sources);
-    console.log(data);
 
     const filteredArticles = filterRemovedArticles(data);
 

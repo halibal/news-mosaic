@@ -46,8 +46,15 @@ export default function ClientFilter({
     } | null>(null);
 
     const [date, setDate] = useState<DateRange | undefined>({
-        from: addDays(new Date(), -30),
-        to: new Date(),
+        from: addDays(
+            searchParams.from
+                ? new Date(decodeURIComponent(searchParams.from))
+                : new Date(),
+            -30
+        ),
+        to: searchParams.to
+            ? new Date(decodeURIComponent(searchParams.to))
+            : new Date(),
     });
 
     const [query, setQuery] = useState<string>(searchParams.q || "");
@@ -61,8 +68,6 @@ export default function ClientFilter({
         ? selectedSourceOptions.map((option) => option.value).join(",")
         : null;
 
-    const language = selectedLanguageOption;
-
     const handleResetFilters = () => {
         setSelectedCategoryOption(null);
         setSelectedSourceOptions(null);
@@ -74,6 +79,7 @@ export default function ClientFilter({
     return (
         <div className="flex flex-1 flex-col gap-2">
             <SearchInput setQuery={setQuery} searchParams={searchParams} />
+            {/* DATE SELECTION */}
             <div className={cn("grid w-full gap-2")}>
                 <Popover>
                     <PopoverTrigger asChild>
@@ -81,7 +87,7 @@ export default function ClientFilter({
                             id="date"
                             variant={"outline"}
                             className={cn(
-                                "w-full justify-start text-left font-normal",
+                                "w-full justify-start text-left font-normal max-lg:text-xs",
                                 !date && "text-muted-foreground"
                             )}>
                             <CalendarIcon className="mr-2 h-4 w-4" />
@@ -107,16 +113,18 @@ export default function ClientFilter({
                             selected={date}
                             onSelect={setDate}
                             numberOfMonths={2}
+                            className="max-lg:text-xs"
                         />
                     </PopoverContent>
                 </Popover>
             </div>
+            {/* CATEGORY SELECTION */}
             <Select
                 options={categoryOptions}
                 onChange={(option) => {
                     if (option?.value) {
                         if (option.value === "all") {
-                            router.push("/news");
+                            router.push(`?q=${query}`);
                         } else {
                             router.push(
                                 `?q=${query}&category=${option?.value}`
@@ -128,7 +136,12 @@ export default function ClientFilter({
                 inputId="category"
                 isDisabled={isSelectedSourceOptions}
                 placeholder="Select a category..."
+                className="max-lg:text-xs"
             />
+            <p className="text-[10px] text-red-500">
+                *Category selection only and instantly effects the source listing
+            </p>
+            {/* SOURCE SELECTION */}
             <Select
                 defaultValue={selectedSourceOptions}
                 onChange={setSelectedSourceOptions}
@@ -136,20 +149,24 @@ export default function ClientFilter({
                 isMulti
                 inputId="sources"
                 placeholder="Select a source..."
+                className="max-lg:text-xs"
                 noOptionsMessage={() => "No sources found"}
             />
+
+            {/* LANGUAGE SELECTION */}
             <Select
                 options={languageOptions}
                 onChange={setSelectedLanguageOption}
                 inputId="language"
                 placeholder="Select a language..."
+                className="max-lg:text-xs"
             />
             <Link
                 href={{
                     query: {
                         ...searchParams,
                         sources,
-                        language: language?.value,
+                        language: selectedLanguageOption?.value,
                         q: query,
                         from: date?.from?.toISOString(),
                         to: date?.to?.toISOString(),
@@ -158,7 +175,7 @@ export default function ClientFilter({
                     },
                 }}
                 title="Filter Search"
-                className={`flex h-9 w-full items-center justify-center self-end rounded-sm border bg-white p-2 text-sm transition-all duration-500 hover:bg-emerald-200 hover:text-clr_primary`}>
+                className={`flex h-9 w-full items-center justify-center self-end rounded-sm border bg-white p-2 text-xs transition-colors duration-500 hover:bg-emerald-200 hover:text-clr_primary lg:text-sm`}>
                 Filter Search
             </Link>
             <Link
@@ -169,7 +186,7 @@ export default function ClientFilter({
                     },
                 }}
                 title="Clear Filters"
-                className={`mt-auto flex h-9 w-full items-center justify-center self-end rounded-sm border bg-white p-2 text-sm transition-all duration-500 hover:bg-rose-200 hover:text-clr_primary`}
+                className={`mt-auto flex h-9 w-full items-center justify-center self-end rounded-sm border bg-white p-2 text-xs transition-all duration-500 hover:bg-rose-200 hover:text-clr_primary lg:text-sm`}
                 onClick={handleResetFilters}>
                 Clear Filters
             </Link>

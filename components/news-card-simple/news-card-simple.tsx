@@ -9,21 +9,21 @@ interface NewsCardSimpleProps {
     title: string | undefined;
 }
 
+const linkClass =
+    "group relative flex min-h-52 w-full flex-col overflow-hidden rounded-xl shadow-lg shadow-slate-500";
+const imageClass =
+    "-z-20 h-auto w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-125 group-hover:opacity-100";
+const titleClass =
+    "mt-auto bg-slate-400 bg-opacity-30 p-3 font-bold transition-all duration-500 lg:text-lg group-hover:bg-opacity-100";
+const descriptionClass =
+    "bg-white bg-opacity-30 p-3 transition-all duration-500 group-hover:bg-opacity-70 max-lg:text-xs";
+
 export default function NewsCardSimple({
     description,
     imageUrl,
     pathname,
     title,
 }: NewsCardSimpleProps) {
-    const linkClass =
-        "group relative flex min-h-52 w-full flex-col overflow-hidden rounded-xl shadow-lg shadow-slate-500";
-    const imageClass =
-        "-z-20 h-auto w-full object-cover opacity-60 transition-all duration-500 group-hover:scale-125 group-hover:opacity-100";
-    const titleClass =
-        "mt-auto bg-slate-400 bg-opacity-30 p-3 font-bold transition-all duration-500 lg:text-lg group-hover:bg-opacity-100";
-    const descriptionClass =
-        "bg-white bg-opacity-30 p-3 transition-all duration-500 group-hover:bg-opacity-70 max-lg:text-xs";
-
     return (
         <Link href={pathname} title={title || "No title"} className={linkClass}>
             <Image

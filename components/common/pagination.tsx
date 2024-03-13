@@ -12,11 +12,11 @@ interface PaginationProps {
 const linkStyles = `flex h-12 w-12 items-center justify-center rounded-full bg-purple-300 text-white transition-all duration-500 hover:bg-purple-900`;
 
 const styles = {
-    pageItem: `flex h-12 w-12 items-center justify-center rounded-full bg-purple-300 text-white transition-all duration-500 hover:bg-purple-900`,
+    pageItem: `flex h-12 w-12 items-center max-xl:h-8 max-xl:w-8 max-xl:text-xs justify-center rounded-full bg-purple-300 text-white transition-all duration-500 hover:bg-purple-900`,
     active: `border border-purple-900 bg-purple-900 text-white hover:bg-purple-200 hover:text-purple-900`,
-    ellipses: `flex h-12 w-12 items-center justify-center rounded-full bg-purple-300 text-white transition-all duration-500 hover:bg-purple-900`,
+    ellipses: `flex items-center justify-center rounded-full bg-purple-300 text-white transition-all duration-500 hover:bg-purple-900`,
     disabled: "pointer-events-none text-purple-200",
-    prev: "flex items-center justify-center text-purple-500 cursor-pointer hover:text-purple-900",
+    prev: "flex items-center justify-center text-purple-500 cursor-pointer hover:text-purple-900 md:text-xl xl:text-4xl",
 };
 
 export default function Pagination({
@@ -127,8 +127,8 @@ export default function Pagination({
                 }`}
                 href={`/news?pageSize=${pageSize}&page=1${queries}`}
                 title="Go To First Page">
-                <IoChevronBackOutline size={30} className="-mr-4" />
-                <IoChevronBackOutline size={30} />
+                <IoChevronBackOutline className="-mr-5 md:-mr-4" />
+                <IoChevronBackOutline />
             </Link>
             <Link
                 className={`${styles.prev} ${
@@ -136,7 +136,7 @@ export default function Pagination({
                 }`}
                 href={`/news?pageSize=${pageSize}&page=${previousPage}${queries}`}
                 title="Go To Previous Page">
-                <IoChevronBackOutline size={30} />
+                <IoChevronBackOutline />
             </Link>
             <div className="flex items-center justify-center gap-2">
                 {totalPages < 5
@@ -149,7 +149,7 @@ export default function Pagination({
                 }`}
                 href={`/news?pageSize=${pageSize}&page=${nextPage}${queries}`}
                 title="Go To Next Page">
-                <IoChevronForwardOutline size={30} />
+                <IoChevronForwardOutline />
             </Link>
             <Link
                 className={`${styles.prev} ${
@@ -157,8 +157,8 @@ export default function Pagination({
                 }`}
                 href={`/news?pageSize=${pageSize}&page=${nextPage}${queries}`}
                 title="Go To Last Page">
-                <IoChevronForwardOutline size={30} className="-mr-4" />
-                <IoChevronForwardOutline size={30} />
+                <IoChevronForwardOutline className="-mr-5 md:-mr-4" />
+                <IoChevronForwardOutline />
             </Link>
         </div>
     );

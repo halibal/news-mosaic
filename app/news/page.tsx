@@ -2,7 +2,13 @@ import Filters from "@/components/filters/filters";
 import NewsList from "@/components/news-list/news-list";
 import NewsListSkeleton from "@/components/news-list/news-list-skeleton";
 import { SearchParamsProps } from "@/types/search-params";
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+    title: "Search Through News",
+    description: "Search through news articles from various sources",
+};
 
 export default function NewsPage({ searchParams }: SearchParamsProps) {
     return (

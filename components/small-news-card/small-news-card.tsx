@@ -18,6 +18,7 @@ export default function SmallNewsCard({
     return (
         <Link
             href={pathname || "#"}
+            target="_blank"
             title={title || "No title"}
             className="group relative h-80 min-w-64 cursor-pointer overflow-hidden rounded-xl border border-clr_primary shadow-lg shadow-slate-50 duration-500 max-xl:h-40">
             <Image

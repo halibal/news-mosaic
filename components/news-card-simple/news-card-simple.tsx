@@ -25,7 +25,7 @@ export default function NewsCardSimple({
     title,
 }: NewsCardSimpleProps) {
     return (
-        <Link href={pathname} title={title || "No title"} className={linkClass}>
+        <Link href={pathname} target="_blank" title={title || "No title"} className={linkClass}>
             <Image
                 className={imageClass}
                 src={imageUrl ?? NoImageFound}

@@ -35,12 +35,12 @@ export default async function NewsList({ searchParams }: SearchParamsProps) {
                     WARNING: {data?.message}
                 </p>
             )}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-1 flex-col gap-4">
                 {isData ? (
                     data.articles.map((article: Article) => (
                         <NewsCardSimple
                             key={article.title}
-                            pathname="/news/1"
+                            pathname={article.url || "/"}
                             imageUrl={article.urlToImage}
                             title={article.title}
                             description={article.description}
